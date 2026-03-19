@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_primary">#121212</color>
+    <color name="background_secondary">#1E1E1E</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#AAAAAA</color>
+    <color name="button_primary">#6C63FF</color>
+    <color name="button_disabled">#3D3D3D</color>
+    <color name="link_color">#6C63FF</color>
+    <color name="divider_color">#333333</color>
+    <color name="vk_blue">#0077FF</color>
+    <color name="vk_blue_light">#1A0077FF</color>
+    <color name="ok_orange">#FF8C00</color>
+    <color name="ok_orange_light">#1AFF8C00</color>
+    <color name="nav_item_selected">#6C63FF</color>
+    <color name="nav_item_unselected">#888888</color>
+</resources>
