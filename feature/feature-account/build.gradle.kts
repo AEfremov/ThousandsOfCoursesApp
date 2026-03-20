@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.keepitlock.featurecourses"
+    namespace = "ru.keepitlock.featureaccount"
     compileSdk {
         version = release(36)
     }
@@ -35,30 +35,17 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:core-di"))
     implementation(project(":core:core-ui"))
-    implementation(project(":core:core-remote"))
-    implementation(project(":core:core-domain"))
-    implementation(project(":core:core-data"))
+    implementation(project(":core:core-di"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
-//    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.recyclerview)
-    // Lifecycle
-    implementation(libs.bundles.lifecycle)
-    // Navigation
-    implementation(libs.bundles.navigation)
+
     // Dagger
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
-    // Coroutines
-    implementation(libs.bundles.coroutines)
-    // Network
-    implementation(libs.bundles.retrofit)
-    // AdapterDelegates
-    implementation(libs.bundles.adapterdelegates)
 }

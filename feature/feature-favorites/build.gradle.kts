@@ -1,22 +1,19 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "ru.keepitlock.thousandsofcoursesapp"
+    namespace = "ru.keepitlock.featurefavorites"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "ru.keepitlock.thousandsofcoursesapp"
         minSdk = 30
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -29,45 +26,36 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-
     buildFeatures {
         viewBinding = true
     }
 }
 
 dependencies {
-    implementation(project(":core:core-di"))
-    implementation(project(":core:core-remote"))
     implementation(project(":core:core-ui"))
-    implementation(project(":core:core-domain"))
-    implementation(project(":core:core-data"))
-    implementation(project(":feature:feature-auth"))
-    implementation(project(":feature:feature-courses"))
-    implementation(project(":feature:feature-favorites"))
-    implementation(project(":feature:feature-account"))
+    implementation(project(":core:core-di"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.recyclerview)
     // Lifecycle
     implementation(libs.bundles.lifecycle)
     // Navigation
     implementation(libs.bundles.navigation)
+    // Dagger
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
     // Coroutines
     implementation(libs.bundles.coroutines)
     // Network
     implementation(libs.bundles.retrofit)
-    implementation(libs.gson)
-
-    implementation(libs.dagger)
-    ksp(libs.dagger.compiler)
+    // AdapterDelegates
+    implementation(libs.bundles.adapterdelegates)
 }

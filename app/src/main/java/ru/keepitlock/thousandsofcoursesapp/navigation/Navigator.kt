@@ -3,7 +3,7 @@ package ru.keepitlock.thousandsofcoursesapp.navigation
 import android.content.Context
 import android.content.Intent
 import ru.keepitlock.featureauth.presentation.AuthNavigator
-import ru.keepitlock.featurecourses.presentation.MainActivity
+import ru.keepitlock.thousandsofcoursesapp.MainActivity
 
 class AppNavigator(private val context: Context) : AuthNavigator {
 

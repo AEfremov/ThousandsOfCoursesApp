@@ -3,7 +3,6 @@ package ru.keepitlock.featurecourses.di
 import dagger.Component
 import ru.keepitlock.coredi.scope.FeatureScope
 import ru.keepitlock.featurecourses.presentation.CoursesFragment
-import ru.keepitlock.featurecourses.presentation.MainActivity
 
 @FeatureScope
 @Component(
@@ -12,7 +11,6 @@ import ru.keepitlock.featurecourses.presentation.MainActivity
 )
 interface CoursesComponent {
 
-    fun inject(activity: MainActivity)
     fun inject(fragment: CoursesFragment)
 
     @Component.Factory
