@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_label_title">Вход</string>
+    <string name="auth_label_email">Email</string>
+    <string name="auth_input_label_email">example@gmail.com</string>
+    <string name="auth_label_password">Пароль</string>
+    <string name="auth_input_label_password">Введите пароль</string>
+    <string name="auth_action_login">Вход</string>
+    <string name="auth_label_no_registered">Нет аккаунта?</string>
+    <string name="auth_label_registration">Регистрация</string>
+    <string name="auth_label_forgot_password">Забыл пароль</string>
+</resources>

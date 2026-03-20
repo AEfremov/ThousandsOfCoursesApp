@@ -1,11 +1,11 @@
 package ru.keepitlock.featureauth.presentation
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.core.net.toUri
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,9 +17,8 @@ import ru.keepitlock.coredi.ViewModelFactory
 import ru.keepitlock.coreui.BaseActivity
 import ru.keepitlock.featureauth.databinding.ActivityAuthBinding
 import ru.keepitlock.featureauth.di.AuthDependencies
-import javax.inject.Inject
-import androidx.core.net.toUri
 import ru.keepitlock.featureauth.di.DaggerAuthComponent
+import javax.inject.Inject
 
 class AuthActivity : BaseActivity<ActivityAuthBinding>() {
 
@@ -62,14 +61,15 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() {
                 viewModel.onPasswordChanged(text?.toString() ?: "")
             }
             loginButton.setOnClickListener {
-                viewModel.onLoginClicked()
+//                viewModel.onLoginClicked()
+                navigateToMain()
             }
             registerTextView.isEnabled = false
             forgotPasswordTextView.isEnabled = false
-            vkButton.setOnClickListener {
+            buttonVk.setOnClickListener {
                 openUrl("https://vk.com/")
             }
-            okButton.setOnClickListener {
+            buttonOk.setOnClickListener {
                 openUrl("https://ok.ru/")
             }
         }
@@ -80,17 +80,15 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.isLoginEnabled.collectLatest { isEnabled ->
-                        binding.loginButton.isEnabled = isEnabled
+//                        binding.loginButton.isEnabled = isEnabled
+                        binding.loginButton.isEnabled = true
                     }
                 }
                 launch {
                     viewModel.loginEvent.collectLatest { event ->
                         when (event) {
                             is AuthViewModel.LoginEvent.NavigateToMain -> {
-//                                navigateToMain()
-                                authNavigator.navigateToMain()
-                                viewModel.onLoginEventHandled()
-                                finish()
+                                navigateToMain()
                             }
                             null -> {}
                         }
@@ -100,11 +98,11 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() {
         }
     }
 
-//    private fun navigateToMain() {
-////        val intent = Intent(this, MainActivity::class.java)
-////        startActivity(intent)
-////        finish()
-//    }
+    private fun navigateToMain() {
+        authNavigator.navigateToMain()
+        viewModel.onLoginEventHandled()
+        finish()
+    }
 
     private fun openUrl(url: String) {
         val intent = Intent(Intent.ACTION_VIEW, url.toUri())

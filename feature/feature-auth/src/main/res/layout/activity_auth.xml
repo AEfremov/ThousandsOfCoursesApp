@@ -4,103 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:fillViewport="true"
 
     tools:context=".presentation.AuthActivity">
-<!--    android:background="@color/background_color"-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Заголовок "Вход" -->
         <TextView
             android:id="@+id/title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Вход"
+            android:text="@string/auth_label_title"
             android:textSize="28sp"
             android:textColor="@color/text_primary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="100dp" />
 
-        <!-- Заголовок поля Email -->
         <TextView
             android:id="@+id/email_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="16sp"
-            android:textColor="@color/text_primary"
-            android:textStyle="bold"
+            android:text="@string/auth_label_email"
+            style="@style/TextAppearance.Primary.Bold"
             app:layout_constraintTop_toBottomOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="28dp" />
 
-        <!-- Поле ввода Email -->
         <EditText
             android:id="@+id/email_edit_text"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:hint="example@gmail.com"
+            android:hint="@string/auth_input_label_email"
             android:inputType="textEmailAddress"
-            android:textColor="@color/text_primary"
-            android:textColorHint="@color/text_secondary"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="@drawable/background_rounded_input"
-            android:maxLines="1"
-            android:singleLine="true"
+            style="@style/TextInput.Primary"
             app:layout_constraintTop_toBottomOf="@id/email_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp" />
 
-        <!-- Заголовок поля Пароль -->
         <TextView
             android:id="@+id/password_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Пароль"
-            android:textSize="16sp"
-            android:textColor="@color/text_primary"
-            android:textStyle="bold"
+            android:text="@string/auth_label_password"
+            style="@style/TextAppearance.Primary.Bold"
             app:layout_constraintTop_toBottomOf="@id/email_edit_text"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="16dp" />
 
-        <!-- Поле ввода Пароль -->
         <EditText
             android:id="@+id/password_edit_text"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:hint="Введите пароль"
+            android:hint="@string/auth_input_label_password"
             android:inputType="textPassword"
-            android:textColor="@color/text_primary"
-            android:textColorHint="@color/text_secondary"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="@drawable/background_rounded_input"
-            android:maxLines="1"
-            android:singleLine="true"
+            style="@style/TextInput.Primary"
             app:layout_constraintTop_toBottomOf="@id/password_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp" />
 
-        <!-- Кнопка "Вход" -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:text="Вход"
+            android:text="@string/auth_action_login"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:textColor="@color/text_primary"
             app:cornerRadius="28dp"
             app:backgroundTint="@color/button_primary"
             app:layout_constraintTop_toBottomOf="@id/password_edit_text"
@@ -108,7 +83,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="24dp" />
 
-        <!-- Блок ссылок (Нет аккаунта? Регистрация) -->
         <LinearLayout
             android:id="@+id/register_links_layout"
             android:layout_width="wrap_content"
@@ -122,31 +96,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Нет аккаунта? "
-                android:textColor="@color/text_secondary" />
+                android:text="@string/auth_label_no_registered"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/register_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Регистрация"
+                android:text="@string/auth_label_registration"
                 android:textColor="@color/link_color"
-                android:textStyle="bold" />
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginStart="4dp" />
         </LinearLayout>
 
-        <!-- Ссылка "Забыл пароль" -->
         <TextView
             android:id="@+id/forgot_password_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Забыл пароль"
+            android:text="@string/auth_label_forgot_password"
             android:textColor="@color/link_color"
+            android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/register_links_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp" />
 
-        <!-- Разделитель -->
         <View
             android:id="@+id/divider"
             android:layout_width="0dp"
@@ -155,9 +133,8 @@
             app:layout_constraintTop_toBottomOf="@id/forgot_password_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="32dp" />
 
-        <!-- Кнопки соцсетей -->
         <LinearLayout
             android:id="@+id/social_buttons_layout"
             android:layout_width="0dp"
@@ -167,41 +144,44 @@
             app:layout_constraintTop_toBottomOf="@id/divider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginTop="32dp">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/vk_button"
+                android:id="@+id/buttonVk"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:text="VK"
-                android:textAllCaps="false"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
                 app:cornerRadius="28dp"
-
+                app:icon="@drawable/ic_vk"
                 app:iconGravity="textStart"
-                app:iconTint="@color/vk_blue"
-                app:backgroundTint="@color/vk_blue_light" />
-            <!--            app:icon="@drawable/ic_vk"-->
+                app:strokeWidth="0dp"
+                app:iconTint="#FFFFFF"
+                app:backgroundTint="@color/vk_blue" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/ok_button"
+                android:id="@+id/buttonOk"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:text="OK"
-                android:textAllCaps="false"
-                app:cornerRadius="28dp"
-
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                app:icon="@drawable/ic_ok"
+                app:iconTint="#FFFFFF"
                 app:iconGravity="textStart"
-                app:iconTint="@color/ok_orange"
-                app:backgroundTint="@color/ok_orange_light" />
-            <!--            app:icon="@drawable/ic_ok"-->
+                app:strokeWidth="0dp"
+                android:background="@drawable/button_ok_gradient"
+                app:backgroundTint="@null"
+                app:cornerRadius="28dp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
