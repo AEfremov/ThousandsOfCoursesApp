@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:background="@drawable/rating_badge_bg"
+                    android:background="@drawable/badge_blur_bg"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="4dp">
 
@@ -73,7 +73,7 @@
                         android:layout_height="14dp"
                         android:contentDescription="@null"
                         android:src="@drawable/ic_star"
-                        app:tint="@android:color/white" />
+                        app:tint="@color/color_primary_green" />
 
                     <TextView
                         android:id="@+id/tvRating"
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:background="@drawable/date_badge_bg"
+                    android:background="@drawable/badge_blur_bg"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="4dp"
                     android:textColor="@android:color/white"
