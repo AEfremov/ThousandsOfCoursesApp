@@ -1,6 +1,9 @@
 package ru.keepitlock.featurecourses.presentation.model
 
 import ru.keepitlock.featurecourses.domain.model.Course
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 data class CourseUi(
     val id: Int,
@@ -20,7 +23,7 @@ fun Course.toUi(): CourseUi {
         description = description,
         price = "$price ₽",
         rating = rating.toString(),
-        startDate = startDate,
+        startDate = formatDate(startDate),
         hasLike = hasLike,
         publishDate = publishDate
     )
@@ -28,4 +31,15 @@ fun Course.toUi(): CourseUi {
 
 fun List<Course>.toUi(): List<CourseUi> {
     return map { it.toUi() }
+}
+
+private fun formatDate(dateString: String): String {
+    return try {
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val outputFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.getDefault())
+        val date = LocalDate.parse(dateString, inputFormatter)
+        date.format(outputFormatter)
+    } catch (e: Exception) {
+        dateString
+    }
 }
