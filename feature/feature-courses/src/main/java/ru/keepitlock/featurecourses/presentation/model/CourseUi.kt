@@ -9,7 +9,8 @@ data class CourseUi(
     val price: String,
     val rating: String,
     val startDate: String,
-    val hasLike: Boolean
+    val hasLike: Boolean,
+    val publishDate: String
 )
 
 fun Course.toUi(): CourseUi {
@@ -20,7 +21,8 @@ fun Course.toUi(): CourseUi {
         price = "$price ₽",
         rating = rating.toString(),
         startDate = startDate,
-        hasLike = hasLike
+        hasLike = hasLike,
+        publishDate = publishDate
     )
 }
 

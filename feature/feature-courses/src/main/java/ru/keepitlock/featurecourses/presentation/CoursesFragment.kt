@@ -30,9 +30,16 @@ class CoursesFragment : BaseFragment<FragmentCoursesBinding>() {
 
     private val viewModel: CoursesViewModel by viewModels { viewModelFactory }
 
-    private val coursesAdapter = CoursesAdapter { course ->
-        // Handle course click
-    }
+    private val coursesAdapter = CoursesAdapter(
+        onItemClick = { course ->
+            println("Course clicked: ${course.title}")
+            // TODO: Navigate to course details
+        },
+        onBookmarkClick = { course ->
+            println(course.title)
+            viewModel.toggleFavorite(course.id)
+        }
+    )
 
     override fun createBinding(
         inflater: LayoutInflater,
@@ -56,13 +63,20 @@ class CoursesFragment : BaseFragment<FragmentCoursesBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupSortButton()
         observeViewModel()
     }
 
     private fun setupRecyclerView() {
-        binding.coursesRecyclerView.apply {
+        binding.recyclerViewCourses.apply {
             adapter = coursesAdapter
             layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
+
+    private fun setupSortButton() {
+        binding.textViewSort.setOnClickListener {
+            viewModel.toggleSortOrder()
         }
     }
 
@@ -76,18 +90,18 @@ class CoursesFragment : BaseFragment<FragmentCoursesBinding>() {
                         }
                         is CoursesUiState.Loading -> {
                             binding.progressBar.visible()
-                            binding.coursesRecyclerView.gone()
+                            binding.recyclerViewCourses.gone()
                             binding.errorTextView.gone()
                         }
                         is CoursesUiState.Success -> {
                             binding.progressBar.gone()
-                            binding.coursesRecyclerView.visible()
+                            binding.recyclerViewCourses.visible()
                             binding.errorTextView.gone()
                             coursesAdapter.items = state.courses
                         }
                         is CoursesUiState.Error -> {
                             binding.progressBar.gone()
-                            binding.coursesRecyclerView.gone()
+                            binding.recyclerViewCourses.gone()
                             binding.errorTextView.visible()
                             binding.errorTextView.text = state.message
                         }

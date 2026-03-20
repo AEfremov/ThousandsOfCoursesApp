@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="courses_label_sort">По дате добавления</string>
+    <string name="courses_hint_search">Search courses…</string>
+    <string name="courses_item_more_details">Подробнее</string>
+</resources>

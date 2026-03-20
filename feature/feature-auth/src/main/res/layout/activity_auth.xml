@@ -106,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/auth_label_registration"
-                android:textColor="@color/link_color"
+                android:textColor="@color/color_primary_green"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginStart="4dp" />
@@ -117,7 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/auth_label_forgot_password"
-            android:textColor="@color/link_color"
+            android:textColor="@color/color_primary_green"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/register_links_layout"
