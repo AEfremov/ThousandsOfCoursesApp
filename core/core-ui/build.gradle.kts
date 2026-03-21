@@ -26,4 +26,6 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     // Lifecycle
     api(libs.bundles.lifecycle)
+
+    implementation(libs.bundles.adapterdelegates)
 }

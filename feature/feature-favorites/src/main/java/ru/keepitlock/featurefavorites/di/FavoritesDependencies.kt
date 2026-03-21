@@ -1,9 +1,11 @@
 package ru.keepitlock.featurefavorites.di
 
 import android.content.Context
-import retrofit2.Retrofit
+import ru.keepitlock.coredata.model.dao.FavoritesDao
 
 interface FavoritesDependencies {
+
     fun context(): Context
-//    fun retrofit(): Retrofit
+
+    fun favoritesDao(): FavoritesDao
 }

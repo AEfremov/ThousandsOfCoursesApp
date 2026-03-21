@@ -8,6 +8,7 @@ import javax.inject.Inject
 class GetCoursesUseCase @Inject constructor(
     private val repository: CoursesRepository
 ) {
+
     operator fun invoke(): Flow<List<Course>> {
         return repository.getCourses()
     }

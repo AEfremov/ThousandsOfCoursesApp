@@ -15,8 +15,8 @@ import kotlinx.coroutines.launch
 import ru.keepitlock.coredi.ComponentHolder
 import ru.keepitlock.coredi.ViewModelFactory
 import ru.keepitlock.coreui.BaseFragment
-import ru.keepitlock.coreui.gone
-import ru.keepitlock.coreui.visible
+import ru.keepitlock.coreui.ext.gone
+import ru.keepitlock.coreui.ext.visible
 import ru.keepitlock.featurecourses.databinding.FragmentCoursesBinding
 import ru.keepitlock.featurecourses.di.CoursesDependencies
 import ru.keepitlock.featurecourses.di.DaggerCoursesComponent

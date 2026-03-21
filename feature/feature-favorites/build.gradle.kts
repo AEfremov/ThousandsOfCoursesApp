@@ -37,6 +37,7 @@ android {
 dependencies {
     implementation(project(":core:core-ui"))
     implementation(project(":core:core-di"))
+    implementation(project(":core:core-data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
