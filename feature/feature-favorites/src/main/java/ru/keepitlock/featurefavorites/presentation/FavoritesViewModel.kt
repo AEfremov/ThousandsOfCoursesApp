@@ -9,12 +9,14 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import ru.keepitlock.coreui.model.CourseUi
-import ru.keepitlock.featurefavorites.domain.repository.FavoritesRepository
+import ru.keepitlock.featurefavorites.domain.uescase.GetFavoritesUseCase
+import ru.keepitlock.featurefavorites.domain.uescase.RemoveFavoriteUseCase
 import ru.keepitlock.featurefavorites.presentation.model.toUi
 import javax.inject.Inject
 
 class FavoritesViewModel @Inject constructor(
-    private val repository: FavoritesRepository
+    private val getFavoritesUseCase: GetFavoritesUseCase,
+    private val removeFavoriteUseCase: RemoveFavoriteUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<FavoritesUiState>(FavoritesUiState.Initial)
@@ -26,7 +28,7 @@ class FavoritesViewModel @Inject constructor(
 
     fun loadFavorites() {
         viewModelScope.launch {
-            repository.getFavorites() // use case
+            getFavoritesUseCase.invoke()
                 .onStart {
                     _uiState.value = FavoritesUiState.Loading
                 }
@@ -43,7 +45,7 @@ class FavoritesViewModel @Inject constructor(
 
     fun toggleFavorite(courseId: Int) {
         viewModelScope.launch {
-            repository.removeFavorite(courseId)
+            removeFavoriteUseCase(courseId)
         }
     }
 }

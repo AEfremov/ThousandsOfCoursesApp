@@ -2,12 +2,14 @@ package ru.keepitlock.featurecourses.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ru.keepitlock.coredata.model.dao.FavoritesDao
 import ru.keepitlock.coredata.model.entity.CourseEntity
 import ru.keepitlock.coreui.model.CourseUi
@@ -70,6 +72,7 @@ class CoursesViewModel @Inject constructor(
                 }
                 .collect { courses ->
                     originalCourses = courses
+                    syncFavorites(courses)
                     _uiState.value = CoursesUiState.Success(courses.toUi())
                 }
         }
@@ -110,16 +113,38 @@ class CoursesViewModel @Inject constructor(
                 favoriteIds += courseId
             }
         }
+    }
 
-//        originalCourses = originalCourses.map { course ->
-//            if (course.id == courseId) {
-//                course.copy(hasLike = !course.hasLike)
-//            } else {
-//                course
-//            }
-//        }
-//
-//        _uiState.value = CoursesUiState.Success(originalCourses.toUi())
+    private suspend fun syncFavorites(courses: List<Course>) {
+        withContext(Dispatchers.IO) {
+            val favoriteCourses = courses.filter { it.hasLike }
+
+            favoriteCourses.forEach { course ->
+                val isAlreadyFavorite = favoritesDao.isFavorite(course.id)
+
+                if (!isAlreadyFavorite) {
+                    val entity = CourseEntity(
+                        id = course.id,
+                        title = course.title,
+                        description = course.description,
+                        price = course.price,
+                        rating = course.rating,
+                        startDate = course.startDate,
+                        hasLike = true,
+                        publishDate = course.publishDate
+                    )
+                    favoritesDao.insertFavorite(entity)
+                }
+            }
+
+            val apiCourseIds = courses.map { it.id }.toSet()
+
+            favoriteIds.forEach { dbCourseId ->
+                if (!apiCourseIds.contains(dbCourseId)) {
+                    favoritesDao.deleteFavoriteById(dbCourseId)
+                }
+            }
+        }
     }
 }
 
