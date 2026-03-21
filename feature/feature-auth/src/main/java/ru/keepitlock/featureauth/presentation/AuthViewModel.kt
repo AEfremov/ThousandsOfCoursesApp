@@ -4,12 +4,11 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
-import ru.keepitlock.featureauth.domain.EmailValidator
+import ru.keepitlock.featureauth.domain.ValidateEmailUseCase
 import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
-    private val emailValidator: EmailValidator
+    private val validateEmailUseCase: ValidateEmailUseCase
 ) : ViewModel() {
 
     private val _email = MutableStateFlow("")
@@ -36,7 +35,7 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun validateForm() {
-        val isEmailValid = emailValidator.isValid(_email.value)
+        val isEmailValid = validateEmailUseCase(_email.value)
         val isPasswordFilled = _password.value.isNotBlank()
         _isLoginEnabled.value = isEmailValid && isPasswordFilled
     }
