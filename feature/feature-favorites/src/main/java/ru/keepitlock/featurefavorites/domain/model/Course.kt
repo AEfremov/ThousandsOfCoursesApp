@@ -49,16 +49,3 @@ fun CourseEntity.toDomain(): Course {
         publishDate = publishDate
     )
 }
-
-fun Course.toEntity(): CourseEntity {
-    return CourseEntity(
-        id = id,
-        title = title,
-        description = description,
-        price = price,
-        rating = rating,
-        startDate = startDate,
-        hasLike = hasLike,
-        publishDate = publishDate
-    )
-}

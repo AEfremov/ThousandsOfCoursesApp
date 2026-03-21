@@ -21,7 +21,6 @@ class AssetInterceptor @Inject constructor(
                 val json = context.assets.open("courses.json")
                     .bufferedReader()
                     .use { it.readText() }
-                // Thread.sleep(500)
                 Response.Builder()
                     .code(200)
                     .message("OK")

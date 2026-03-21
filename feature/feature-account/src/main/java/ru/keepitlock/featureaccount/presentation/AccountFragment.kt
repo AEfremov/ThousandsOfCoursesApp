@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.keepitlock.coredi.ComponentHolder
 import ru.keepitlock.coredi.ViewModelFactory
@@ -47,20 +44,5 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeViewModel()
-    }
-
-    private fun observeViewModel() {
-        viewLifecycleOwner.lifecycleScope.launch {
-//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.uiState.collectLatest { state ->
-//                    // Handle UI state
-//                }
-//            }
-        }
-    }
-
-    companion object {
-        fun newInstance() = AccountFragment()
     }
 }

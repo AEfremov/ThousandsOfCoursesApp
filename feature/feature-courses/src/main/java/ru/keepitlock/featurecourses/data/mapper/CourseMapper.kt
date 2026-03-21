@@ -2,7 +2,6 @@ package ru.keepitlock.featurecourses.data.mapper
 
 import ru.keepitlock.featurecourses.data.model.CourseDto
 import ru.keepitlock.featurecourses.domain.model.Course
-import javax.inject.Inject
 
 fun CourseDto.toDomain(): Course {
     return Course(

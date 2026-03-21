@@ -10,10 +10,6 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideContext(context: Context): Context = context.applicationContext
-
     @Provides
     @Singleton
     fun provideAuthNavigator(context: Context): AuthNavigator {

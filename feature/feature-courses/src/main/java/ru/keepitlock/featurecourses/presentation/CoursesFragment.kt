@@ -110,8 +110,4 @@ class CoursesFragment : BaseFragment<FragmentCoursesBinding>() {
             }
         }
     }
-
-    companion object {
-        fun newInstance() = CoursesFragment()
-    }
 }

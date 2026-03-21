@@ -107,8 +107,4 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
             }
         }
     }
-
-    companion object {
-        fun newInstance() = FavoritesFragment()
-    }
 }

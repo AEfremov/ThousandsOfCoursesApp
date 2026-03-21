@@ -12,10 +12,7 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _email = MutableStateFlow("")
-    val email: StateFlow<String> = _email.asStateFlow()
-
     private val _password = MutableStateFlow("")
-    val password: StateFlow<String> = _password.asStateFlow()
 
     private val _isLoginEnabled = MutableStateFlow(false)
     val isLoginEnabled: StateFlow<Boolean> = _isLoginEnabled.asStateFlow()

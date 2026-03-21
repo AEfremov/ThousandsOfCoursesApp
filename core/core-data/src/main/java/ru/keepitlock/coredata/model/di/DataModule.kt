@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import ru.keepitlock.coredata.model.db.AppDatabase
 import ru.keepitlock.coredata.model.dao.FavoritesDao
+import ru.keepitlock.coredata.model.db.AppDatabase
 import javax.inject.Singleton
 
 @Module

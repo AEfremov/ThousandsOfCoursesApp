@@ -23,6 +23,9 @@ import ru.keepitlock.featureauth.di.AuthDependencies
 import ru.keepitlock.featureauth.di.DaggerAuthComponent
 import javax.inject.Inject
 
+private const val URL_VK = "https://vk.com/"
+private const val URL_OK = "https://ok.ru/"
+
 class AuthActivity : BaseActivity<ActivityAuthBinding>() {
 
     @Inject
@@ -71,16 +74,15 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() {
                 viewModel.onPasswordChanged(text?.toString() ?: "")
             }
             loginButton.setOnClickListener {
-//                viewModel.onLoginClicked()
-                navigateToMain()
+                viewModel.onLoginClicked()
             }
             registerTextView.isEnabled = false
             forgotPasswordTextView.isEnabled = false
             buttonVk.setOnClickListener {
-                openUrl("https://vk.com/")
+                openUrl(URL_VK)
             }
             buttonOk.setOnClickListener {
-                openUrl("https://ok.ru/")
+                openUrl(URL_OK)
             }
         }
     }
@@ -90,8 +92,7 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.isLoginEnabled.collectLatest { isEnabled ->
-//                        binding.loginButton.isEnabled = isEnabled
-                        binding.loginButton.isEnabled = true
+                        binding.loginButton.isEnabled = isEnabled
                     }
                 }
                 launch {
