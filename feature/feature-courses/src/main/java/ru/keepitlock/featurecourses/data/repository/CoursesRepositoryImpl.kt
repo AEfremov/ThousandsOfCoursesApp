@@ -1,7 +1,9 @@
 package ru.keepitlock.featurecourses.data.repository
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import ru.keepitlock.featurecourses.data.api.CoursesApi
 import ru.keepitlock.featurecourses.data.mapper.toDomain
 import ru.keepitlock.featurecourses.domain.model.Course
@@ -15,5 +17,5 @@ class CoursesRepositoryImpl @Inject constructor(
     override fun getCourses(): Flow<List<Course>> = flow {
         val response = api.getCourses()
         emit(response.courses.toDomain())
-    }
+    }.flowOn(Dispatchers.IO)
 }
